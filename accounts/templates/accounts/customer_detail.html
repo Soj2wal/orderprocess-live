@@ -1,0 +1,104 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Customers</h1>
+    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+            class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+</div>
+
+<div class="row">
+    <!-- Content Column -->
+    <div class="col-lg-4 mb-4">
+        <!-- Customer Button -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Customer</h6>
+            </div>
+            <div class="card card-body">
+                <p>{{customer.name}}</p>
+                <a class="btn btn-outline-info btn-sm btn-block" href="{% url 'update_customer' customer.id %}">Update
+                    Customer</a>
+                <a class="btn btn-outline-primary btn-sm btn-block" href="#">Place Order</a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-lg-4 mb-4">
+
+        <!-- Contact information -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Contact Information</h6>
+            </div>
+            <div class="card card-body">
+                <p>Email: {{customer.email}}</p>
+                <p>Phone: {{customer.phone}}</p>
+                <a class="btn btn-outline-danger btn-sm btn-block" href="{% url 'delete_customer' customer.id %}">Delete
+                    Customer</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 mb-4">
+
+        <!-- Total Order numbers -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Total Orders</h6>
+            </div>
+            <div class="card card-body">
+                <h1 style="text-align: center; padding: 10px;">{{order_count}}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="container-fluid">
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Customer's Orders</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Category</th>
+                                <th>Date Ordered</th>
+                                <th>Status</th>
+                                <th>Update</th>
+                                <th>Remove</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in orders %}
+                            <tr>
+                                <td>{{order.product}}</td>
+                                <td>{{order.product.category}}</td>
+                                <td>{{order.date_created}}</td>
+                                <td>{{order.status}}</td>
+                                <td><a class="btn btn-sm btn-info" href="{% url 'update_order' order.id %}">Update</a>
+                                </td>
+                                <td><a class="btn btn-sm btn-danger" href="{% url 'delete_order' order.id %}">Remove</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+{% endblock %}

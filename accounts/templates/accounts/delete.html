@@ -1,0 +1,53 @@
+{% extends 'accounts/main.html' %}
+{% load static %}
+{% block content %}
+
+<!-- <div class="row"> -->
+<!-- Total Orders Example -->
+<!-- <div class="card border-left-primary shadow h-100 py-2">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                        <p>Are you sure you want to delete order of "{{item.customer}}" for "{{item}}" ?</p>
+                    </div>
+                    <form method="POST">
+                        <a href="{% url 'home' %}">Cancel</a>
+                        <input type="submit" name="Confirm">
+                    </form>
+                </div>
+                <div class="col-auto">
+                    <i class="fas fa-exclamation-triangle fa-2x text-gray-300"></i>
+                </div>
+            </div>
+        </div>
+    </div> -->
+<!-- <p>Are you sure you want to delete order of "{{item.customer}}" for "{{item}}" ?</p> -->
+
+<!-- <form method="POST">
+        <a href="{% url 'home' %}">Cancel</a>
+        <input type="submit" name="Confirm">
+    </form> -->
+<!-- </div> -->
+
+
+
+<div class="card text-center">
+    <div class="card-header border-left-primary font-weight-bold text-lg">
+        <!-- <i class="fas fa-exclamation-triangle fa-2x text-gray-300"></i> -->
+        !!! Confirmation message !!!
+        <!-- <i class="fas fa-exclamation-triangle fa-2x text-gray-300"></i> -->
+    </div>
+    <div class="card-body border-left-primary">
+        <p>Are you sure you want to delete order of "{{item.customer}}" for "{{item}}" ?</p>
+        <form action="{% url 'delete_order' item.id %}" method="POST">
+            {% csrf_token %}
+            <a class="btn btn-primary btn-sm" href="{% url 'orderslist' %}">Cancel</a>
+            <input type="submit" class="btn btn-danger btn-sm" name="Confirm">
+        </form>
+    </div>
+
+</div>
+
+
+{% endblock %}
