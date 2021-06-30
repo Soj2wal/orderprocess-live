@@ -1,0 +1,60 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Staff's List</h1>
+    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+            class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+</div>
+<div class="row">
+    <div class="container-fluid">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <form method="GET" action="">
+                    {{myFilter.form}}
+                    <button class="btn btn-primary" type="submit">Search</button>
+                    <!-- <a class="btn btn-primary" href="#">Search</a> -->
+                    <!-- <a class="btn btn-primary" href="{% url 'create_order' %}">Add New Order</a> -->
+                </form>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Staffs Name</th>
+                                <th>Position</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Address</th>
+                                <th>Increment Rate(%)</th>
+                                <th>Salary</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for staff in stafflist %}
+                            <tr>
+                                <td>{{staff.name}}</td>
+                                <td>{{staff.position}}</td>
+                                <td>{{staff.phone}}</td>
+                                <td>{{staff.email}}</td>
+                                <td>{{staff.address}}</td>
+                                <td>{{staff.increment_rate}}</td>
+                                <td>{{staff.salary}}</td>
+                                <td><a class="btn btn-info btn-sm" href="#">View</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

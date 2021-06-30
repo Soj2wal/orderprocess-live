@@ -1,0 +1,54 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Customers List</h1>
+    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+            class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+</div>
+<div class="row">
+    <div class="container-fluid">
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <form method="GET" action="">
+                    {{myFilter.form}}
+                    <button class="btn btn-primary" type="submit">Search</button>
+                    <!-- <a class="btn btn-primary" href="#">Search</a> -->
+                    <a class="btn btn-primary" href="{% url 'create_customer' %}">Add New Customer</a>
+                </form>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Customer name</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for customer in customer %}
+                            <tr>
+                                <td>{{customer.name}}</td>
+                                <td>{{customer.phone}}</td>
+                                <td>{{customer.email}}</td>
+                                <td><a class="btn btn-info btn-sm"
+                                        href="{% url 'customerdetail' customer.id %}">View</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
